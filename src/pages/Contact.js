@@ -27,13 +27,67 @@ const styles = {
 
 };
 
-const USER_ID = 'service_akx45wc';
-const TEMPLATE_ID = 'template_vh3wzxc';
+const USER_ID = 'service_l1nzvu7';
+const TEMPLATE_ID = 'template_ti2ucqn';
 
-emailjs.init('RTn0ri1oNV0QVp6gx');
+emailjs.init('ssVEJlJNQQo-dI29W');
 
 export default function Contact() {
+    function helper(e) {
+        // Wait for the DOM to fully load before executing the script
+        document.addEventListener('DOMContentLoaded', function () {
 
+            // Function to check if an email is valid
+            function isValidEmail(email) {
+                const regex = /.+@.+\..+/;
+                return regex.test(email);
+            }
+
+            // Event listener for the 'Send Message' button click
+            const sendButton = document.querySelector('.btn-dark.mt-2'); // Adjust the selector as needed
+            sendButton.addEventListener('click', function () {
+                const formControls = document.querySelectorAll('.form-control');
+                let allValid = true;
+                let emailValid = true;
+
+                // Selectors for various elements
+                const emailInput = document.getElementById('email');
+                const validFeedback = document.querySelector('.valid');
+                const sendMessage = document.getElementById('sendmessage');
+                const formCard = document.getElementById('formcard');
+
+                // Iterate through each form control to validate
+                formControls.forEach((control) => {
+                    if (!control.value) {
+                        allValid = false;
+                        control.className = 'form-control is-invalid';
+                    } else if (emailInput && !isValidEmail(emailInput.value)) {
+                        emailValid = false;
+                        emailInput.className = 'form-control is-invalid';
+                        if (validFeedback) validFeedback.textContent = 'Invalid Email 👎';
+                    } else {
+                        control.className = 'form-control is-valid';
+                    }
+                });
+
+                // Display feedback based on the form validation
+                if (allValid && emailValid) {
+                    if (validFeedback) validFeedback.textContent = '';
+                    if (sendMessage) sendMessage.style.display = "block";
+                    if (formCard) formCard.style.display = 'none';
+                } else if (!allValid) {
+                    if (validFeedback) validFeedback.textContent = 'Form Incomplete 😔';
+                } else if (!emailValid) {
+                    if (validFeedback) validFeedback.textContent = 'Please check the email field.';
+                    formControls.forEach((control) => {
+                        control.className = 'form-control is-valid';
+                    });
+                    if (emailInput) emailInput.className = 'form-control is-invalid';
+                }
+            });
+        });
+
+    }
     function handleSubmit(event) {
         event.preventDefault();
         emailjs.sendForm(USER_ID, TEMPLATE_ID, event.target)
@@ -42,7 +96,7 @@ export default function Contact() {
                 console.log(result.text);
                 setTimeout(() => {
                     window.location.href = "/react-portfolio"; // redirect after 5 seconds
-                }, 5000); // 5000 milliseconds = 5 seconds
+                }, 5000); 
             }, (error) => {
                 // Handle form submission error
                 console.log(error.text);
@@ -97,7 +151,7 @@ export default function Contact() {
                         <div className="row">
                             <div className=" mx-auto" id='formcard'>
                                 <div className="form">
-                                    <div id="errormessage"></div>
+                                    {/* <div id="errormessage"></div> */}
                                     <form onSubmit={handleSubmit} method="post" role="form" className="contactForm">
                                         <div className="form-group">
                                             <input type="text" name="from_name" className="form-control mb-1" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" required />
@@ -112,42 +166,7 @@ export default function Contact() {
                                             <div className="validation"></div>
                                         </div>
                                         <div className="text-center">
-                                            <button onClick={() => {
-                                                const formControls = document.querySelectorAll('.form-control');
-                                                let allValid = true;
-                                                let emailValid = true;
-                                                const email = document.getElementById('email').value;
-                                                function isValidEmail(email) {
-                                                    // This regular expression checks if an email is valid
-                                                    const regex = /.+@.+\..+/;
-                                                    return regex.test(email);
-                                                }
-                                                formControls.forEach((control) => {
-                                                    if (!control.value) {
-                                                        allValid = false;
-                                                        control.className = 'form-control is-invalid'
-                                                    } else if (!isValidEmail(email)) {
-                                                        emailValid = false;
-                                                        control.className = 'form-control is-invalid'
-                                                        document.querySelector('.valid').textContent = 'Invalid Email 👎';
-                                                    } else {
-                                                        control.className = 'form-control is-valid'
-                                                    }
-                                                });
-
-                                                if (allValid && emailValid) {
-                                                    document.querySelector('.valid').textContent = '';
-                                                    document.getElementById('sendmessage').style.display = "block"
-                                                    document.getElementById('formcard').style.display = 'none'
-                                                } else if (!allValid) {
-                                                    document.querySelector('.valid').textContent = 'Form Incomplete 😔';
-                                                } else if (!emailValid) {
-                                                    formControls.forEach((control) => {
-                                                        control.className = 'form-control is-valid'
-                                                    })
-                                                    document.getElementById('email').className = 'form-control is-invalid'
-                                                }
-                                            }} className="btn btn-dark mt-2">
+                                            <button onClick={helper} className="btn btn-dark mt-2">
                                                 Send Message
                                             </button>
                                         </div>

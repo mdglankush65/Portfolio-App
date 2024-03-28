@@ -8,7 +8,7 @@ const ResumeBuilderModal = () => {
                 <div className="modal-content">
                     <div className="modal-header ">
                         <h1 className="modal-title fs-5 ms-auto" id="exampleModalLabel">Resume Builder</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div className="m-auto py-1">
                         <img src={resumepic} width={'100%'} height={'100%'} alt=''></img>

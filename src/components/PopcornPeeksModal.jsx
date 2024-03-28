@@ -8,10 +8,10 @@ const PopcornPeeksModal = () => {
                 <div className="modal-content">
                     <div className="modal-header ">
                         {/* <h1 className="modal-title fs-5 ms-auto" id="exampleModalLabel">Popcorn Peek</h1> */}
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div className="m-auto py-1">
-                        <img src={movie} style={{ width: '100%' }}></img>
+                        <img src={movie} style={{ width: '100%' }} alt=''></img>
                     </div>
                     <div className="modal-footer">
                         <div className="modal-dialog modal-dialog-scrollable">
