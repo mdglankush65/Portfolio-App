@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import 'aos/dist/aos.css';
 import AOS from 'aos';
 import HeroSection from '../components/Herosection';
-import AboutSection from '../components/Aboutsection';
+import AboutSection from '../components/AboutSection';
 import TechnologySection from '../components/TechnologySection';
 export default function About() {
     const [text, setText] = useState('');
