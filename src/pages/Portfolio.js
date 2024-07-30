@@ -13,18 +13,33 @@ function Portfolio() {
                     <div className="col-md-12">
                         <h3 data-aos="zoom-in" className="section-title">Projects</h3>
                         <div className="section-title-divider"></div>
-                        <p className="section-description">Full Stack</p>
                     </div>
                 </div>
 
                 <div className="row">
+                    <ProjectItem
+                        title="Shifterra"
+                        liveLink="https://shifterra.vercel.app/"
+                        githubLink="https://github.com/mdglankush65/Shifterra"
+                        modalTarget="exampleModal3"
+                        image='shifterra'
+                        isMainProject={true}
+                    />
+                    <ProjectItem
+                        title="Smart Reply"
+                        liveLink="https://github.com/mdglankush65/LinkedIn-AI?tab=readme-ov-file#demo"
+                        githubLink="https://github.com/mdglankush65/LinkedIn-AI"
+                        modalTarget="ecommerce"
+                        image='smart'
+                        isMainProject={false}
+                    />
                     <ProjectItem
                         title="Popcorn Peek"
                         liveLink="https://entertainment-app-1.onrender.com/"
                         githubLink="https://github.com/mdglankush65/Entertainment-App"
                         modalTarget="exampleModal3"
                         image='popcorn'
-                        isMainProject={true}
+                        isMainProject={false}
                     />
                     <ProjectItem
                         title="E-Commerce"
